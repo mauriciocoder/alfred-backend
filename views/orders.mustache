@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Bonetti, Mauricio">
+    <title>Alfred BackEnd</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+    }
+    
+    a, u {
+        text-decoration: none !important;
+    }
+	
+	.greetings {
+		color: white;
+		position: relative;
+		display: block;
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	
+	.pointer {
+		cursor: pointer;
+	}
+    </style>
+</head>
+<body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+           <div class="collapse navbar-collapse" >
+				        <!-- Greetings -->
+                <ul class="nav navbar-nav" style="float:left">
+                    <li>
+                        {{#authenticated}}<div class="greetings">Hello, {{user.username}}!</div>{{/authenticated}}
+                    </li>
+                </ul>
+        				<!-- Logout / GitHub Button -->
+        				<ul class="nav navbar-nav pointer" style="float:right">
+                    <li>
+                        {{^authenticated}}<a href="/login">Login</a>{{/authenticated}}
+                        {{#authenticated}}<a href="/logout">Logout</a>{{/authenticated}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Alfred BackEnd</h1>
+                {{#message}}<span style="color:red">{{message}}</span>{{/message}}
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-center">
+                <p class="lead">Orders</p>
+                <table class="table table-sm">
+        			<thead>
+        				<tr>
+        				    <th>Ordered Time</th>
+        					<th>Apartment</th>
+        					<th>Food</th>
+        					<th>Customer Speech</th>
+        				</tr>
+        			</thead>
+        			<tbody id="tableBody">
+        				{{#orders}}
+                		<tr>
+                		  <td align="left">{{timestamp}}</td>
+                		  <td align="left">1401</td>
+                		  <td align="left">{{food}}</td>
+                		  <td align="left">{{userSpeech}}</td>
+                		</tr>
+                		{{/orders}}
+        			</tbody>
+        		</table>
+        		<!-- Footer -->
+                <ul class="list-unstyled">
+                    <li>© 2017 Mauricio Bonetti</li>
+                </ul>
+          </div>
+        </div>
+    </div>
+    	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script>
+            setInterval(function() {
+                $.get("/orders/api", function(data) {
+                    var orderDom = data.reduce(function(acc, order) {
+                        var orderDom = "<tr><td align='left'>" 
+                        + order.timestamp + "</td><td align='left'>"
+                        + 1401 + "</td><td align='left'>"
+                        + order.food + "</td><td align='left'>" 
+                        + order.userSpeech + "</td></tr>";
+                        return acc + orderDom;
+                    }, "");
+                    $("#tableBody").html(orderDom);
+                });
+            }, 1000 * 10);
+        </script>
+</body>
+</html>
