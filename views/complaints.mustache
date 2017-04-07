@@ -66,7 +66,7 @@
         <!--Heading -->
         <div class="row">
             <div class="col-md-12">
-                <h2 class="h2-responsive text-xs-center">Food Orders</h2>
+                <h2 class="h2-responsive text-xs-center">Guest Complaints</h2>
             </div>
         </div>
         <!--Table -->
@@ -74,21 +74,19 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Ordered Time</th>
+                        <th>Complaint Time</th>
                         <th>Apartment</th>
-                        <th>Food</th>
                         <th>Guest Speech</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    {{#orders}}
+                    {{#complaints}}
                     <tr>
                         <td>{{timestamp}}</td>
                         <td>1401</td>
-                        <td>{{foods}}</td>
                         <td>{{userSpeech}}</td>
                     </tr>
-                    {{/orders}}
+                    {{/complaints}}
                 </tbody>
             </table>
         </div>
@@ -109,16 +107,15 @@
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script>
     setInterval(function() {
-        $.get("/orders/api", function(data) {
-            var orderDom = data.reduce(function(acc, order) {
-                var orderDom = "<tr><td align='left'>" 
-                + order.timestamp + "</td><td align='left'>"
+        $.get("/complaints/api", function(data) {
+            var complaintDom = data.reduce(function(acc, complaint) {
+                var complaintDom = "<tr><td align='left'>" 
+                + complaint.timestamp + "</td><td align='left'>"
                 + 1401 + "</td><td align='left'>"
-                + order.foods + "</td><td align='left'>" 
-                + order.userSpeech + "</td></tr>";
-                return acc + orderDom;
+                + complaint.userSpeech + "</td></tr>";
+                return acc + complaintDom;
             }, "");
-            $("#tableBody").html(orderDom);
+            $("#tableBody").html(complaintDom);
         });
     }, 1000 * 10);
 </script>
