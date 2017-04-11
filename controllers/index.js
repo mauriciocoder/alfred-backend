@@ -20,5 +20,6 @@ module.exports = function(passport) {
   router.use("/orders", require("./orders")());
   router.use("/complaints", require("./complaints")());
   router.use("/wifi", require("./wifi")());
+  router.use("/breakfast", require("./breakfast")());
   return router;
 }

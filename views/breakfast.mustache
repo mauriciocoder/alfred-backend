@@ -63,11 +63,11 @@
 <main class="p-t-6">
     <!--Main layout-->
     <div class="container">
-        <!--Login row-->
+        <!--Breakfast row-->
         <div class="row">
             <div class="col-md-12">
                 <!--Heading -->
-                <h2 class="h2-responsive text-xs-center">Wifi</h2>
+                <h2 class="h2-responsive text-xs-center">Breakfast</h2>
             </div>
         </div>
         {{#message}}
@@ -78,30 +78,29 @@
             </div>
         </div>
         {{/message}}
-        {{#wifi}}
-        <form action="/wifi" method="post">
-        <!--Login row-->
+        <form action="/breakfast" method="post">
+        <!--Start time row-->
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <!--Login -->
                 <div class="md-form">
-                    <i class="fa fa-wifi prefix"></i>
-                    <input type="text" name="login" value="{{login}}" class="form-control"></input>
-                    <label for="form2">Login</label>
+                    <i class="fa fa-hourglass-start prefix"></i>
+                    <input type="text" name="startTime" value="{{startTime}}" class="form-control"></input>
+                    <label for="form2">Begin</label>
                 </div>
             </div>
             <div class="col-md-4"></div>
         </div>
-        <!--Password row-->
+        <!--End time row-->
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <!--Password -->
+                <!--End time -->
                 <div class="md-form">
-                    <i class="fa fa-unlock-alt prefix"></i>
-                    <input type="text" name="password" value="{{password}}" class="form-control" maxlength="80">
-                    <label for="form2">Password</label>
+                    <i class="fa fa-hourglass-end prefix"></i>
+                    <input type="text" name="endTime" value="{{endTime}}" class="form-control" maxlength="80">
+                    <label for="form2">End</label>
                 </div>
             </div>
             <div class="col-md-4"></div>
@@ -112,9 +111,10 @@
                 <button type="submit" class="btn btn-default btn-lg">Submit</button>
             </div>
         </div>
+        {{#breakfast}}
         <input type="hidden" name="id" value="{{_id}}" class="form-control" maxlength="80">
         </form>
-        {{/wifi}}
+        {{/breakfast}}
     </div>    
 </main>
 <!--Footer-->

@@ -22,9 +22,8 @@ module.exports = function(passport) {
     var login = req.body.login;
     var password = req.body.password;
     Wifi.update({ _id: id }, { $set: { login: login, password: password }}, function(err, doc) {
-      console.log("document = " + JSON.stringify(doc));
       req.flash("message", "Wifi Redefined");
-      return res.redirect("/");
+      return res.redirect("/wifi");
     });
   });
   return router;
