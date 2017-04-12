@@ -41,6 +41,8 @@
                         <a class="nav-link dropdown-toggle waves-effect waves-light alfred-bg" id="menuConfig" data-toggle="dropdown">Config</a>
                         <div class="dropdown-menu dropdown-secondary" aria-labelledby="menuConfig" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <a class="dropdown-item waves-effect waves-light" href="/breakfast">Breakfast</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/checkoutConfig">Checkout</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/fee">Hotel Fee</a>
                             <a class="dropdown-item waves-effect waves-light" href="/wifi">Wifi</a>
                         </div>
                     </li>
@@ -78,6 +80,7 @@
                         <th>Apartment</th>
                         <th>Food</th>
                         <th>Guest Speech</th>
+                        <th>Total Price (USD)</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -87,6 +90,7 @@
                         <td>1401</td>
                         <td>{{foods}}</td>
                         <td>{{userSpeech}}</td>
+                        <td>${{price}}</td>
                     </tr>
                     {{/orders}}
                 </tbody>
@@ -115,7 +119,8 @@
                 + order.timestamp + "</td><td align='left'>"
                 + 1401 + "</td><td align='left'>"
                 + order.foods + "</td><td align='left'>" 
-                + order.userSpeech + "</td></tr>";
+                + order.userSpeech + "</td><td align='left'>" 
+                + "$" + order.price + "</td></tr>";
                 return acc + orderDom;
             }, "");
             $("#tableBody").html(orderDom);

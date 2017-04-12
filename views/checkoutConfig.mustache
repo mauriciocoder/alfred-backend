@@ -69,7 +69,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!--Heading -->
-                <h2 class="h2-responsive text-xs-center">Breakfast</h2>
+                <h2 class="h2-responsive text-xs-center">Late Checkout</h2>
             </div>
         </div>
         {{#message}}
@@ -80,7 +80,7 @@
             </div>
         </div>
         {{/message}}
-        <form action="/breakfast" method="post">
+        <form action="/checkoutConfig" method="post">
         <!--Start time row-->
         <div class="row">
             <div class="col-md-4"></div>
@@ -113,10 +113,10 @@
                 <button type="submit" class="btn btn-default btn-lg">Submit</button>
             </div>
         </div>
-        {{#breakfast}}
+        {{#checkout}}
         <input type="hidden" name="id" value="{{_id}}" class="form-control" maxlength="80">
         </form>
-        {{/breakfast}}
+        {{/checkout}}
     </div>    
 </main>
 <!--Footer-->
