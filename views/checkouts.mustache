@@ -69,7 +69,7 @@
         <!--Heading -->
         <div class="row">
             <div class="col-md-12">
-                <h2 class="h2-responsive text-xs-center">Food Orders</h2>
+                <h2 class="h2-responsive text-xs-center">Checkouts</h2>
             </div>
         </div>
         <!--Table -->
@@ -79,21 +79,23 @@
                     <tr>
                         <th>Ordered Time</th>
                         <th>Apartment</th>
-                        <th>Food</th>
                         <th>Guest Speech</th>
-                        <th>Total Price (USD)</th>
+                        <th>Stay Fee (USD)</th>
+                        <th>Orders Fee (USD)</th>
+                        <th>Total (USD)</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    {{#orders}}
+                    {{#checkouts}}
                     <tr>
                         <td>{{timestamp}}</td>
                         <td>1401</td>
-                        <td>{{foods}}</td>
                         <td>{{userSpeech}}</td>
-                        <td>${{price}}</td>
+                        <td>${{totalStayFee}}</td>
+                        <td>${{totalOrdersFee}}</td>
+                        <td>${{totalFee}}</td>
                     </tr>
-                    {{/orders}}
+                    {{/checkouts}}
                 </tbody>
             </table>
         </div>
@@ -113,6 +115,7 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script>
+/*
     setInterval(function() {
         $.get("/orders/api", function(data) {
             var orderDom = data.reduce(function(acc, order) {
@@ -127,6 +130,7 @@
             $("#tableBody").html(orderDom);
         });
     }, 1000 * 10);
+*/
 </script>
 </body>
 </html>

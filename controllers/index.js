@@ -23,5 +23,6 @@ module.exports = function(passport) {
   router.use("/breakfast", require("./breakfast")());
   router.use("/checkoutConfig", require("./checkoutConfig")());
   router.use("/fee", require("./fee")());
+  router.use("/checkouts", require("./checkouts")());
   return router;
 }
