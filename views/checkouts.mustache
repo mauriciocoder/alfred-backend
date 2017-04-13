@@ -116,20 +116,21 @@
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script>
 /*
-    setInterval(function() {
-        $.get("/orders/api", function(data) {
-            var orderDom = data.reduce(function(acc, order) {
-                var orderDom = "<tr><td align='left'>" 
-                + order.timestamp + "</td><td align='left'>"
-                + 1401 + "</td><td align='left'>"
-                + order.foods + "</td><td align='left'>" 
-                + order.userSpeech + "</td><td align='left'>" 
-                + "$" + order.price + "</td></tr>";
-                return acc + orderDom;
-            }, "");
-            $("#tableBody").html(orderDom);
-        });
-    }, 1000 * 10);
+setInterval(function() {
+  $.get("/checkouts/api", function(data) {
+    var checkoutDom = data.reduce(function(acc, checkout) {
+      var checkoutDom = "<tr><td align='left'>" 
+      + checkout.timestamp + "</td><td align='left'>"
+      + 1401 + "</td><td align='left'>"
+      + checkout.userSpeech + "</td><td align='left'>" 
+      + "$" + checkout.totalStayFee + "</td><td align='left'>" 
+      + "$" + checkout.totalOrdersFee + "</td><td align='left'>" 
+      + "$" + checkout.totalFee + "</td></tr>";
+      return acc + checkoutDom;
+    }, "");
+    $("#tableBody").html(checkoutDom);
+  });
+}, 1000 * 10);
 */
 </script>
 </body>

@@ -11,16 +11,21 @@ module.exports = function() {
           Checkout.find({}, handleCheckoutView.bind(null, req, res));
         }
     });
-    /* Handle orders GET */
+    /* Handle checkouts GET */
     /*
     router.get("/api", function(req, res) {
-        console.log("chegou no orders api");
         if (!req.isAuthenticated()) {
           console.log("not authenticated");
         } else {
-          Order.find({}, function(err, orders) {
-            orders = formatTimeStamp(orders);
-            res.json(orders);
+          Checkout.find({}, function(err, checkouts) {
+            var checks = checkouts.map(function(checkout) {
+               checkout.timestamp = checkout.timestamp.replace(/T/, ' ').replace(/\..+/, '');
+               checkout.totalFee = checkout.totalStayFee + checkout.totalOrdersFee;
+               console.log('1 checkout = ' + JSON.stringify(checkout));
+               return checkout;
+            });
+            //console.log('checks = ' + JSON.stringify(checks));
+            res.json(checks);
           });
         }
     });
